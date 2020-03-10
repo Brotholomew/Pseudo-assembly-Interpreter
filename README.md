@@ -7,21 +7,23 @@ Pseudoassembler is a low-level programming language which is taught at Faculty o
 ## System requirements
 It is best to use Windows 10 (tested on v. 1903 and newer) and Windows 7. 
 
-_Why Windows_
+_Why Windows?_
 
 The project will only work properly on the Microsoft OS due to my professor's instructions to use percisely the windows.h library for aesthetic display of the virtual machine's state. 
 
 ## How to run
 After compiling the code, one will be promted to specify the path with pseudo-assembly code to be interpreted, e.g.:
-```_______ PSEUDO ASSEMBLER INTERPRETER _______
+```
+_______ PSEUDO ASSEMBLER INTERPRETER _______
 Please provide the path for the file containing the assembler instructions: ../_tests/bubble_sort.txt
 ```
 
 Then one can decide whether to use the _debug mode_ or _normal mode_
-```Run in debug mode? [y/n]: y
+```
+Run in debug mode? [y/n]: y
 ```
 
-## tests
+## Tests
 You can find tests with pseudo-assembly code in the file `_tests`
 
 ## Status
