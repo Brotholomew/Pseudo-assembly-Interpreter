@@ -1,0 +1,13 @@
+N           DC  INTEGER(5)
+WYNIK       DC  INTEGER(1)
+JEDEN       DC  INTEGER(1)
+
+            L   1,WYNIK
+            L   2,JEDEN
+SILNIA      MR   1,2
+            A   2,JEDEN
+            C   2,N
+            JP  KONIEC
+            J   SILNIA
+
+KONIEC      ST  1,WYNIK

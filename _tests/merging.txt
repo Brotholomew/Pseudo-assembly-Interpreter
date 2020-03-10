@@ -1,0 +1,85 @@
+WEKTORA     DS  10*INTEGER
+WEKTORB     DS  10*INTEGER
+WEKTORC     DS  100*INTEGER
+JEDEN       DC  INTEGER(1)
+CZTERY      DC  INTEGER(4)
+DZIESIEC    DC  INTEGER(10)
+ZERO        DC  INTEGER(0)
+DWA         DC  INTEGER(2)
+
+            LA  1,WEKTORA
+            LA  2,WEKTORB
+            LA  7,WEKTORC
+
+            L   10,JEDEN
+            L   11,DZIESIEC
+            M   11,CZTERY
+PETLA_1     C   10,DZIESIEC
+            JP  DALEJ
+            A   10,JEDEN
+            ST  11,0(1)
+            A   11,JEDEN
+            A   1,CZTERY
+            J   PETLA_1
+
+DALEJ        L   10,JEDEN
+PETLA_2      C   10,DZIESIEC
+             JP  DALEJ2
+             A   10,JEDEN
+             ST  11,0(2)
+             A   11,JEDEN
+             A   2,CZTERY
+             J   PETLA_2
+
+DALEJ2       LA  1,WEKTORA
+             LA  2,WEKTORB
+             LA  1,WEKTORA
+             LA  2,WEKTORB
+             L   3,0(1)
+             L   4,0(2)
+             L   5,ZERO
+             L   6,ZERO
+             LA  7,WEKTORC
+
+POROWNAJ    CR  3,4
+            JP  MNIEJ.W.B
+            JZ  MNIEJ.W.A
+            JN  MNIEJ.W.A
+
+MNIEJ.W.A   ST  3,0(7)
+            A   7,CZTERY
+            A   1,CZTERY
+            L   3,0(1)
+            A   5,JEDEN
+            C   5,DZIESIEC
+            JN  POROWNAJ
+            JZ  KONIECA
+
+MNIEJ.W.B   ST  4,0(7)
+            A   7,CZTERY
+            A   2,CZTERY
+            L   4,0(2)
+            A   6,JEDEN
+            C   6,DZIESIEC
+            JN  POROWNAJ
+            JZ  KONIECB
+
+KONIECA     C   6,DZIESIEC
+            JZ  KONIEC
+            ST  4,0(7)
+            A   7,CZTERY
+            A   2,CZTERY
+            A   6,JEDEN
+            L   4,0(2)
+            J   KONIECA
+
+KONIECB     C   5,DZIESIEC
+            JZ  KONIEC
+            ST  3,0(7)
+            A   7,CZTERY
+            A   1,CZTERY
+            A   5,JEDEN
+            L   3,0(1)
+            J   KONIECB
+
+KONIEC      CR  5,6

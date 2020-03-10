@@ -1,0 +1,79 @@
+TAB         DS  10*INTEGER
+DZIESIEC    DC  INTEGER(10)
+ZERO        DC  INTEGER(0)
+JEDEN       DC  INTEGER(1)
+CZTERY      DC  INTEGER(4)
+CZTERD      DC  INTEGER(40)
+DWA         DC  INTEGER(2)
+M_DZIESIEC  DC  INTEGER(-10)
+
+            LA  0,TAB
+            L   1,DZIESIEC
+            L   2,M_DZIESIEC
+TAB_FILL    C   0,CZTERD
+            JZ  ZERA
+            ST  1,0(0)
+            ST  2,4(0)
+            S   1,JEDEN
+            A   2,JEDEN
+            A   0,CZTERY
+            A   0,CZTERY
+            J   TAB_FILL
+
+ZERA        LA   11,TAB
+            A   11,CZTERD
+            S   11,CZTERY
+            L   12,ZERO
+            ST  12,0(11)
+            S   11,CZTERY
+            ST  12,0(11)
+
+PETLA_1Z    L   2,ZERO
+            LA  0,TAB
+            A   0,CZTERY
+            LA  1,TAB
+
+PETLA_1W    L   3,0(0)
+            L   4,0(1)
+            C   4,ZERO
+            JN  DALEJ_1
+            C   3,ZERO
+            JP  DALEJ_1
+            JZ  DALEJ_1
+            ST  3,0(1)
+            ST  4,0(0)
+            L   2,JEDEN
+DALEJ_1     A   0,CZTERY
+            A   1,CZTERY
+            C   0,CZTERD
+            JN  PETLA_1W
+            C   2,ZERO
+            JP  PETLA_1Z
+
+PETLA_2Z    L   2,ZERO
+            LA  0,TAB
+            A   O,CZTERD
+            S   0,CZTERY
+            S   0,CZTERY
+            LA  1,TAB
+            A   1,CZTERD
+            S   1,CZTERY
+
+PETLA_2W    L   3,0(0)
+            L   4,0(1)
+            C   4,ZERO
+            JP  DALEJ_2
+            C   3,ZERO
+            JZ  DALEJ_2
+            JN  DALEJ_2
+            ST  3,0(1)
+            ST  4,0(0)
+            L   2,JEDEN
+
+DALEJ_2     S   0,CZTERY
+            S   1,CZTERY
+            C   0,ZERO
+            JP  PETLA_2W
+            JZ  PETLA_2W
+            C   2,ZERO
+            JP  PETLA_2Z

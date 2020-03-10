@@ -1,0 +1,47 @@
+TAB         DS  10*INTEGER
+CZTERY      DC  INTEGER(4)
+DZIESIEC    DC  INTEGER(10)
+JEDEN       DC  INTEGER(1)
+ZERO        DC  INTEGER(0)
+
+            LA  0,TAB
+            L   1,CZTERY
+TAB_FILL    C   1,DZIESIEC
+            JZ  DALEJ
+            A   1,JEDEN
+            J   TAB_FILL
+DALEJ       C   1,JEDEN
+            JN  SORTOWANIE
+            ST  1,0(0)
+            A   0,CZTERY
+            S   1,JEDEN
+            J   DALEJ
+
+SORTOWANIE  L   3,JEDEN
+            LA  0,TAB
+            L   1,ZERO
+            L   2,ZERO
+
+PETLA_Z     L   3,ZERO
+            L   2,ZERO
+            LA  0,TAB
+PETLA_W     L   4,DZIESIEC
+            SR  4,1
+            S   4,JEDEN
+            L   6,0(0)
+            L   7,4(0)
+            CR  6,7
+            JN  JEST_OK
+            JZ  JEST_OK
+            L   3,JEDEN
+            ST  6,4(0)
+            ST  7,0(0)
+
+JEST_OK     A   0,CZTERY
+            A   2,JEDEN
+            CR  2,4
+            JN  PETLA_W
+
+            A   1,JEDEN
+            C   3,ZERO
+            JP  PETLA_Z

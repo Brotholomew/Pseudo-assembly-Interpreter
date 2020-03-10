@@ -1,0 +1,34 @@
+TAB         DS  10*INTEGER
+ZERO        DC  INTEGER(0)
+CZTERY      DC  INTEGER(4)
+DZIESIEC    DC  INTEGER(10)
+JEDEN       DC  INTEGER(1)
+CZTERD      DC  INTEGER(40)
+WYNIK       DS  INTEGER
+
+            LA  0,TAB
+            L   1,DZIESIEC
+FILL_TAB    C   1,ZERO
+            JZ  SZUKANIE
+            ST  1,0(0)
+            A   0,CZTERY
+            S   1,JEDEN
+            J   FILL_TAB
+
+SZUKANIE    L   8,JEDEN
+            ST  8,TAB
+            LA  0,TAB
+            LA  2,TAB
+            A   2,CZTERY
+
+PETLA_G     C   2,CZTERD
+            JP  DALEJ
+            L   1,0(0)
+            L   3,0(2)
+            CR  1,3
+            JP  BRAK_ZMIANY
+            LR  0,2
+BRAK_ZMIANY A   2,CZTERY
+            J   PETLA_G
+
+DALEJ       ST  1,WYNIK

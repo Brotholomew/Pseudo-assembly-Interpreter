@@ -1,0 +1,59 @@
+TAB         DS  10*INTEGER
+DZIESIEC    DC  INTEGER(10)
+ZERO        DC  INTEGER(0)
+JEDEN       DC  INTEGER(1)
+CZTERY      DC  INTEGER(4)
+CZTERD      DC  INTEGER(40)
+
+            LA  0,TAB
+            L   1,DZIESIEC
+FILL_TAB    C   1,JEDEN
+            JN  POCZATEK
+            ST  1,0(0)
+            A   0,CZTERY
+            S   1,JEDEN
+            J   FILL_TAB
+
+POCZATEK    LA  O,TAB
+            LA  1,TAB
+            LA  2,TAB
+            A   2,CZTERY
+SPRAWDZ     L   10,0(1)
+            L   11,0(2)
+            CR  10,12
+            JP  SZUKAM_1
+            JZ  NAST
+            LR  1,2
+            LA  2,TAB(0)
+            J   SZUKAM_1
+NAST        A   2,CZTERY
+            CR  2,CZTERD
+            JP  KONIEC
+            J   SPRAWDZ
+
+
+            A   0,CZTERY
+SZUKAM_1    C   0,CZTERD
+            JZ  DALEJ
+            L   3,0(0)
+            L   4,0(1)
+            CR  4,3
+            JP  NIE_1
+            LR  1,0
+NIE_1       A   0,CZTERY
+            J   SZUKAM_1
+
+DALEJ       LA  0,TAB
+            L   10,0(1)
+SZUKAM_2    C   0,CZTERD
+            JZ  KONIEC
+            L   3,0(0)
+            CR  3,10
+            JZ  NIE_2
+            L   4,0(2)
+            CR  4,3
+            JP  NIE_2
+            LR  2,0
+NIE_2       A   0,CZTERY
+            J   SZUKAM_2
+KONIEC      L   11,0(2)
