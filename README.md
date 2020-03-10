@@ -14,10 +14,12 @@ The project will only work properly on the Microsoft OS due to my professor's in
 ## How to run
 After compiling the code, one will be promted to specify the path with pseudo-assembly code to be interpreted, e.g.:
 ```_______ PSEUDO ASSEMBLER INTERPRETER _______
-Please provide the path for the file containing the assembler instructions: ../_tests/bubble_sort.txt```
+Please provide the path for the file containing the assembler instructions: ../_tests/bubble_sort.txt
+```
 
 Then one can decide whether to use the _debug mode_ or _normal mode_
-```Run in debug mode? [y/n]: y```
+```Run in debug mode? [y/n]: y
+```
 
 ## tests
 You can find tests with pseudo-assembly code in the file `_tests`
